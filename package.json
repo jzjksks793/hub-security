@@ -1,0 +1,16 @@
+{
+  "name": "hub-ai-security",
+  "version": "1.0.0",
+  "description": "CLI HUB AI SECURITY (PT STORE) - verifikasi kepemilikan domain lalu scan keamanan dasar",
+  "main": "index.js",
+  "bin": {
+    "hub-ai-security": "./index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "ISC"
+}
