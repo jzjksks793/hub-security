@@ -34,7 +34,7 @@ async function main() {
   const domain = rawInput.replace(/^https?:\/\//, "").replace(/\/+$/, "").toLowerCase();
   const targetUrl = `https://${domain}`;
 
-  // === MODE LOKAL: Bikin token sendiri tanpa server ===
+  // === 100% MODE LOKAL ===
   console.log(c.cyan(`\n[*] Membuat token verifikasi LOKAL untuk: ${domain}...`));
   const token = "pt-sec-" + crypto.randomBytes(6).toString("hex");
 
@@ -71,7 +71,6 @@ async function main() {
   const headerResults = await scanHeaders(targetUrl);
   const pathResults = await scanPaths(targetUrl);
   
-  // Crawler & Scan
   const urlsToScan = [targetUrl, ...(await crawl(targetUrl))];
   const findings = [];
   for (const url of urlsToScan) {
