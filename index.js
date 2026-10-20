@@ -11,7 +11,6 @@ const { crawl } = require("./scanner/crawler");
 
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 const ask = (q) => new Promise((r) => rl.question(q, (a) => r(a.trim())));
-const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 
 function printBanner() {
   console.log(`
@@ -36,7 +35,7 @@ async function main() {
   const targetUrl = `https://${domain}`;
 
   // === MODE LOKAL: Bikin token sendiri tanpa server ===
-  console.log(c.cyan(`\n[*] Membuat token verifikasi lokal untuk: ${domain}...`));
+  console.log(c.cyan(`\n[*] Membuat token verifikasi LOKAL untuk: ${domain}...`));
   const token = "pt-sec-" + crypto.randomBytes(6).toString("hex");
 
   console.log(c.green("\n[+] Token berhasil dibuat."));
@@ -54,9 +53,7 @@ async function main() {
     const res = await fetch(`${targetUrl}/security-pem.txt`, { cf: { cacheTtl: 0 } });
     if (res.ok) {
       const text = (await res.text()).trim();
-      if (text === token) {
-        verified = true;
-      }
+      if (text === token) verified = true;
     }
   } catch (e) {
     console.log(c.red(`[ERROR] Gagal mengambil file verifikasi: ${e.message}`));
